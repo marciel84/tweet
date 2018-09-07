@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.twitter.api.controller.dto.TweetsCountDto;
+import com.demo.twitter.api.controller.dto.TweetsHashtagCountDto;
 import com.demo.twitter.api.controller.dto.UserDto;
 import com.demo.twitter.api.exception.TwitterApiException;
 import com.demo.twitter.api.exception.TwitterApiNotFoundException;
@@ -55,4 +56,21 @@ public class TwitterServiceImpl implements TwitterService {
 		}
 	}
 
+	@Override
+	public List<TweetsHashtagCountDto> getTweetsByTagAndLang() throws TwitterApiException, TwitterApiNotFoundException {
+		
+		try {
+			
+			List<TweetsHashtagCountDto> tweets = customRepo.getTweetsByTagAndLang();
+			
+			if(tweets.isEmpty()) {
+				throw new TwitterApiNotFoundException("A consulta nao retornou registros");
+			}
+			
+			return tweets;
+			
+		} catch (Exception e) {
+			throw new TwitterApiException(e.getMessage(), e);
+		}
+	}
 }

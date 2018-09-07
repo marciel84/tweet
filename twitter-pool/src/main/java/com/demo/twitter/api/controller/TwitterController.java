@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.twitter.api.controller.dto.ErrorResponse;
 import com.demo.twitter.api.controller.dto.TweetsCountDto;
+import com.demo.twitter.api.controller.dto.TweetsHashtagCountDto;
 import com.demo.twitter.api.controller.dto.UserDto;
 import com.demo.twitter.api.exception.TwitterApiException;
 import com.demo.twitter.api.exception.TwitterApiNotFoundException;
@@ -62,6 +63,24 @@ public class TwitterController {
 		LOGGER.debug("getTweets - INICIO");
 		
 		List<TweetsCountDto> tweets = service.getTweetsByHour();
+		
+		LOGGER.debug("getTweets - FIM");
+		
+		return tweets;
+		
+	}
+	
+	@RequestMapping("/hashTags")
+	@ApiOperation(value = "Retorna a quantidade de tweets agrupados por hashTag e Localizao", httpMethod = "GET", response = String.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Success", response = String.class),
+			@ApiResponse(code = 400, message = "Failure", response = ErrorResponse.class),
+			@ApiResponse(code = 500, message = "Failure", response = ErrorResponse.class) })
+	public List<TweetsHashtagCountDto> getTweetsByTagAndLocation() throws TwitterApiException, TwitterApiNotFoundException {
+		
+		LOGGER.debug("getTweets - INICIO");
+		
+		List<TweetsHashtagCountDto> tweets = service.getTweetsByTagAndLang();
 		
 		LOGGER.debug("getTweets - FIM");
 		
