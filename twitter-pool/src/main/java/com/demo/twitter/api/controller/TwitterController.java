@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,6 +35,7 @@ public class TwitterController {
 	@Autowired
 	private TwitterService service;
 	
+	@CrossOrigin
 	@RequestMapping("/users")
 	@ApiOperation(value = "Retorna os usuarios que mais possuem seguidores", httpMethod = "GET", response = String.class)
 	@ApiResponses(value = {
@@ -52,6 +54,7 @@ public class TwitterController {
 		
 	}
 	
+	@CrossOrigin
 	@RequestMapping("/tweets")
 	@ApiOperation(value = "Retorna os tweets agrupados por hora", httpMethod = "GET", response = String.class)
 	@ApiResponses(value = {
@@ -70,6 +73,7 @@ public class TwitterController {
 		
 	}
 	
+	@CrossOrigin
 	@RequestMapping("/hashTags")
 	@ApiOperation(value = "Retorna a quantidade de tweets agrupados por hashTag e Localizao", httpMethod = "GET", response = String.class)
 	@ApiResponses(value = {
