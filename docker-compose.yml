@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+
+    twitter-core:
+        container_name: twitter-core
+        image: marciel84/twitter-core:latest
+        ports:
+            - "8080:8080"
+        networks:
+            - twitter
+
+    twitter-web:
+        container_name: twitter-web
+        image: marciel84/twitter-web:latest
+        ports:
+            - "3000:80"
+        networks:
+            - twitter
+        depends_on:
+            - twitter-core
+        links:
+            - twitter-core:twitter-core
+        restart: on-failure
+        
+networks:
+  twitter:
+    driver: bridge

@@ -12,7 +12,7 @@ class App extends Component {
 
   componentDidMount(){
     $.get({
-        url:"http://localhost:8080/twitter/users",
+        url:"http://twitter-core:8080/twitter/users",
         dataType: 'json',
         success:function(request){            
           this.setState({lista:request});
@@ -21,7 +21,7 @@ class App extends Component {
     ); 
     
     $.get({
-        url:"http://localhost:8080/twitter/tweets",
+        url:"http://twitter-core:8080/twitter/tweets",
         dataType: 'json',
         success:function(request){             
           this.setState({listaTweets:request});
@@ -30,7 +30,7 @@ class App extends Component {
     );
 
     $.get({
-        url:"http://localhost:8080/twitter/hashTags",
+        url:"http://twitter-core:8080/twitter/hashTags",
         dataType: 'json',
         success:function(request){             
           this.setState({listaLang:request});
