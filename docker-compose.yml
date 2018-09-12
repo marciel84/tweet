@@ -19,9 +19,18 @@ services:
             - twitter
         depends_on:
             - twitter-core
-        links:
-            - twitter-core:twitter-core
-        restart: on-failure
+    
+#    mongodb:
+#        container_name: mongodb
+#        image: mongo:latest
+#        ports:
+#            - "3000:80"
+#        networks:
+#            - twitter
+#        depends_on:
+#            - twitter-core
+#        links:
+#            - twitter-core:twitter-core
         
 networks:
   twitter:
